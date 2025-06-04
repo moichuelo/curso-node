@@ -1,0 +1,16 @@
+<%- include('partials/head') %>
+
+    <%- include('partials/header') %>
+        <main>
+            <section>
+                <% if (login){ %>
+                    <p>Bienvenido a tu área personal</p>
+                    <p>Aquí puedes administrar tu información</p>
+                    <% } else { %>
+                        <p>Aceeso denegado inicia sesión para poder acceder</p>
+                        <a href="/">Ir a la página principal</a>
+                        <% } %>
+            </section>
+        </main>
+
+        <%- include('partials/footer') %>

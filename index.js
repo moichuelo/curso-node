@@ -1,10 +1,14 @@
+const { log } = require("console");
 let express = require("express"); // Importamos express
 let app = express(); // Creamos una instancia de express
 let mysql = require("mysql2");
 let path = require("path");
 require("dotenv").config({ path: "./.env" });
 
-app.use(express.static(path.join(__dirname, "public"))); // Configuramos la carpeta public como carpeta estatica
+app.use("/resources", express.static(path.join(__dirname, "public"))); // Configuramos la carpeta public como carpeta estatica
+
+//motor de vistas ejs para express
+app.set("view engine", "ejs");
 
 let conexion = mysql.createConnection({
     //Creamos la configuración de la base de datos
@@ -78,12 +82,26 @@ conexion.end();
 
 app.get("/", function (req, res) {
     // res.send("Hola Mundo");
-    res.sendFile(path.join(__dirname, "public", "pages/index.html"));
+    // res.sendFile(path.join(__dirname, "public", "pages/index.html"));
+    res.render("index", {
+        nombre: "",
+        apellido: "Perez",
+    });
+});
+app.get("/administracion", function (req, res) {
+    // res.send("Hola Mundo");
+    // res.sendFile(path.join(__dirname, "public", "pages/index.html"));
+    res.render("administracion", {
+        login: false,
+        nombre: "Pepe",
+        apellido: "Perez",
+    });
 });
 
 app.get("/contacto", function (req, res) {
     // res.send("Página de contacto");
-    res.sendFile(path.join(__dirname, "public", "pages/contacto.html"));
+    // res.sendFile(path.join(__dirname, "public", "pages/contacto.html"));
+    res.render("contacto");
 });
 
 app.listen(process.env.PORT);

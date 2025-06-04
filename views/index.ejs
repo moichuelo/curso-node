@@ -1,0 +1,12 @@
+<%- include('partials/head') %>
+    <link rel="stylesheet" href="resources/css/index.css">
+    <%- include('partials/header') %>
+
+        <h1>Pagina principal</h1>
+        <% if (nombre){ %>
+            <p>Bienvenido a la pagina <%=nombre %>
+                    <br>Tu apellido es <%=apellido%>
+            </p>
+            <% } %>
+
+                <%- include('partials/footer') %>
